@@ -54,9 +54,9 @@ public class EditEntry_Activity extends Activity {
         //move to the first record - removed 16/5/2013
         //c.moveToFirst();
         //fill in  the edit text views with the data from the cursor
-         if(c.isNull(0))
-        UpdateAllEditTextViewsFromCursor();
-
+         if(!c.isNull(0)) {
+             UpdateAllEditTextViewsFromCursor();
+         }
     }
 
 
