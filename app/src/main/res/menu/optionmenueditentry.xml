@@ -3,27 +3,27 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/mi_add"
-        android:title="Add Entry"
+        android:title="@string/AddEntry"
         android:icon="@drawable/ic_menu_add"
         android:enabled="true"
         />
 
     <item
         android:id="@+id/mi_save"
-        android:title="Save Entry"
+        android:title="@string/SaveEntry"
         android:icon="@drawable/ic_menu_save"
         android:enabled="true"
         android:visible="false"
         />
     <item
         android:id="@+id/mi_delete"
-        android:title="Delete Entry"
+        android:title="@string/DeleteEntry"
         android:icon="@drawable/ic_menu_delete"
         android:enabled="true"
         />
     <item
         android:id="@+id/mi_cancel"
-        android:title="Cancel Entry"
+        android:title="@string/CancelEntry"
         android:icon="@drawable/ic_menu_close_clear_cancel"
         android:enabled="true"
         android:visible="false"

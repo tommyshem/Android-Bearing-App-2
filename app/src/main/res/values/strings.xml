@@ -35,4 +35,27 @@
     <string name="record">Record number</string>
     <string name="commentsText">Comments</string>
     <string name="EditingNewEntry">" Editing New Entry"</string>
+    <string name="FindBearingNumber">Find Bearing Number</string>
+    <string name="SetToZero">Set To Zero</string>
+    <string name="AddEntry">Add Entry</string>
+    <string name="SaveEntry">Save Entry</string>
+    <string name="DeleteEntry">Delete Entry</string>
+    <string name="CancelEntry">Cancel Entry</string>
+    <string name="NonFound">None Found</string>
+    <string name="BearingNumber">Bearing number</string>
+    <string name="HintType">Type ID in mm</string>
+    <string name="HintTypeOD">Type OD in mm</string>
+    <string name="HintWidth">Width in mm</string>
+    <string name="HintBearingType">zz z rs</string>
+    <string name="HintDefault">0 default</string>
+    <string name="HintLocation">Type Location Stored</string>
+    <string name="HintComments">Comments Entered Here</string>
+    <string name="ContentFirstButton">buttonfirst</string>
+    <string name="ContentPrevButton">Prevbutton</string>
+    <string name="ContentLastButton">button last</string>
+    <string name="ContentNextButton">button next</string>
+    <string name="Record">Record 1 of 1</string>
+    <string name="MenuEdit">Edit</string>
+    <string name="MenuAbout">About</string>
+    <string name="MenuSearch">Search</string>
 </resources>

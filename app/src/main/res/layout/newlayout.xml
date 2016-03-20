@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<LinearLayout xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -7,15 +7,15 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="0dp"
         android:id="@+id/scrollView"
         android:layout_weight="0.5"
         >
 
 
         <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
             >
 
@@ -25,12 +25,13 @@
                 android:text="@string/BearingNum"
                 android:id="@+id/textViewBearing"
                 android:typeface="serif"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 android:layout_alignParentLeft="true"
                 android:layout_alignBaseline="@+id/editTextBearingNum"
                 android:paddingLeft="7dp"
-                android:paddingTop="7dp"/>
+                android:paddingTop="7dp"
+                tools:ignore="RtlHardcoded,RtlSymmetry" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -38,11 +39,12 @@
                 android:text="@string/IDSize"
                 android:id="@+id/textViewID"
                 android:typeface="serif"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 android:paddingLeft="7dp"
                 android:layout_alignParentLeft="true"
-                android:layout_alignBaseline="@+id/editTextID"/>
+                android:layout_alignBaseline="@+id/editTextID"
+                tools:ignore="RtlHardcoded,RtlSymmetry" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -50,11 +52,12 @@
                 android:text="@string/ODSize"
                 android:id="@+id/textViewOD"
                 android:typeface="serif"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 android:paddingLeft="7dp"
                 android:layout_alignParentLeft="true"
-                android:layout_alignBaseline="@+id/editTextOD"/>
+                android:layout_alignBaseline="@+id/editTextOD"
+                tools:ignore="RtlHardcoded,RtlSymmetry" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -62,11 +65,12 @@
                 android:text="@string/widthText"
                 android:id="@+id/textViewWidth"
                 android:typeface="serif"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 android:paddingLeft="7dp"
                 android:layout_alignParentLeft="true"
-                android:layout_alignBaseline="@+id/editTextWidth"/>
+                android:layout_alignBaseline="@+id/editTextWidth"
+                tools:ignore="RtlHardcoded,RtlSymmetry" />
 
 
             <TextView
@@ -75,11 +79,12 @@
                 android:text="@string/Type"
                 android:id="@+id/textViewType"
                 android:typeface="serif"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 android:paddingLeft="7dp"
                 android:layout_alignParentLeft="true"
-                android:layout_alignBaseline="@+id/editTextType"/>
+                android:layout_alignBaseline="@+id/editTextType"
+                tools:ignore="RtlHardcoded,RtlSymmetry" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -87,11 +92,12 @@
                 android:text="@string/ImageNum"
                 android:id="@+id/textViewImageNum"
                 android:typeface="serif"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 android:layout_alignParentLeft="true"
                 android:layout_alignBaseline="@+id/editTextImageNum"
-                android:paddingLeft="7dp"/>
+                android:paddingLeft="7dp"
+                tools:ignore="RtlHardcoded,RtlSymmetry" />
 
 
             <TextView
@@ -100,11 +106,12 @@
                 android:text="@string/Location"
                 android:id="@+id/textViewLocation"
                 android:typeface="serif"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 android:paddingLeft="7dp"
                 android:layout_alignParentLeft="true"
-                android:layout_alignBaseline="@+id/editTextLocation"/>
+                android:layout_alignBaseline="@+id/editTextLocation"
+                tools:ignore="RtlHardcoded,RtlSymmetry" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -112,27 +119,28 @@
                 android:text="@string/commentsText"
                 android:id="@+id/textViewComments"
                 android:typeface="serif"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 android:paddingLeft="7dp"
                 android:layout_alignParentLeft="true"
-                android:layout_alignBaseline="@+id/editTextComments"/>
-
+                android:layout_alignBaseline="@+id/editTextComments"
+                tools:ignore="RtlHardcoded,RtlSymmetry" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/editTextBearingNum"
                 android:typeface="serif"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textColor="#322683"
                 android:textStyle="bold"
                 android:focusable="false"
-                android:hint="Bearing number"
+                android:hint="@string/BearingNumber"
                 android:textColorHint="#346ac8"
                 android:inputType="text"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"/>
+                android:layout_alignParentTop="true"
+                tools:ignore="RtlHardcoded" />
 
 
             <EditText
@@ -140,16 +148,17 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/editTextID"
                 android:typeface="serif"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textColor="#322683"
                 android:textStyle="bold"
                 android:inputType="number"
                 android:focusable="false"
-                android:hint="Type ID in mm"
+                android:hint="@string/HintType"
                 android:textColorHint="#346ac8"
                 android:layout_alignLeft="@+id/editTextBearingNum"
                 android:layout_below="@+id/editTextBearingNum"
-                android:paddingTop="7dp"/>
+                android:paddingTop="7dp"
+                tools:ignore="RtlHardcoded" />
 
 
             <EditText
@@ -157,68 +166,72 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/editTextOD"
                 android:typeface="serif"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textColor="#322683"
                 android:textStyle="bold"
                 android:inputType="number"
-                android:hint="Type OD in mm"
+                android:hint="@string/HintTypeOD"
                 android:focusable="false"
                 android:editable="false"
                 android:textColorHint="#346ac8"
                 android:layout_alignLeft="@+id/editTextBearingNum"
-                android:layout_below="@+id/editTextID"/>
+                android:layout_below="@+id/editTextID"
+                tools:ignore="Deprecated,RtlHardcoded" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/editTextWidth"
                 android:typeface="serif"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textColor="#322683"
                 android:textStyle="bold"
                 android:inputType="number"
                 android:focusable="false"
-                android:hint="Width in mm"
+                android:hint="@string/HintWidth"
                 android:textColorHint="#346ac8"
                 android:layout_alignLeft="@+id/editTextBearingNum"
-                android:layout_below="@+id/editTextOD"/>
+                android:layout_below="@+id/editTextOD"
+                tools:ignore="RtlHardcoded" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/editTextType"
                 android:typeface="serif"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textColor="#322683"
                 android:textStyle="bold"
                 android:inputType="text"
                 android:focusable="false"
-                android:hint="zz z rs "
+                android:hint="@string/HintBearingType"
                 android:textColorHint="#346ac8"
                 android:layout_alignLeft="@+id/editTextBearingNum"
-                android:layout_below="@+id/editTextWidth"/>
+                android:layout_below="@+id/editTextWidth"
+                tools:ignore="RtlHardcoded" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/editTextImageNum"
                 android:typeface="serif"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textColor="#322683"
                 android:textStyle="bold"
                 android:inputType="number"
                 android:focusable="false"
-                android:hint="0 default"
+                android:hint="@string/HintDefault"
                 android:textColorHint="#346ac8"
                 android:layout_alignLeft="@+id/editTextBearingNum"
-                android:layout_below="@+id/editTextType"/>
+                android:layout_below="@+id/editTextType"
+                tools:ignore="RtlHardcoded" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/editTextLocation"
                 android:typeface="serif"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textColor="#322683"
                 android:textStyle="bold"
                 android:focusable="false"
@@ -226,14 +239,15 @@
                 android:textColorHint="#346ac8"
                 android:layout_alignLeft="@+id/editTextBearingNum"
                 android:layout_below="@+id/editTextImageNum"
-                android:hint="Type Location Stored"/>
+                android:hint="@string/HintLocation"
+                tools:ignore="RtlHardcoded" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/editTextComments"
                 android:typeface="serif"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textColor="#322683"
                 android:textStyle="bold"
                 android:focusable="false"
@@ -241,7 +255,8 @@
                 android:textColorHint="#346ac8"
                 android:layout_alignLeft="@+id/editTextBearingNum"
                 android:layout_below="@+id/editTextLocation"
-                android:hint="Comments Entered Here"/>
+                android:hint="@string/HintComments"
+                tools:ignore="RtlHardcoded" />
 
         </RelativeLayout>
     </ScrollView>
@@ -258,7 +273,8 @@
         android:layout_alignParentLeft="true"
 
         android:layout_alignParentTop="false"
-        android:background="#010101">
+        android:background="#010101"
+        tools:ignore="ObsoleteLayoutParam,RtlHardcoded">
 
         <ImageButton
             android:layout_width="wrap_content"
@@ -267,7 +283,7 @@
             android:onClick="onClickFirstRecord"
             android:id="@+id/btnFirst"
             android:src="@drawable/btn_first"
-            android:contentDescription="buttonfirst"/>
+            android:contentDescription="@string/ContentFirstButton"/>
 
         <ImageButton
             android:layout_width="wrap_content"
@@ -276,7 +292,7 @@
             android:onClick="onClickPrevRecord"
             android:layout_toRightOf="@+id/btnFirst"
             android:src="@drawable/prev"
-            android:contentDescription="Prevbutton"/>
+            android:contentDescription="@string/ContentPrevButton"/>
 
 
         <ImageButton
@@ -287,7 +303,7 @@
             android:src="@drawable/btn_last"
             android:layout_alignParentRight="true"
             android:layout_alignTop="@+id/btnFirst"
-            android:contentDescription="button last"/>
+            android:contentDescription="@string/ContentLastButton"/>
 
         <ImageButton
             android:layout_width="wrap_content"
@@ -296,16 +312,16 @@
             android:onClick="onClickNextRecord"
             android:src="@drawable/next"
             android:layout_toLeftOf="@+id/btnLast"
-            android:contentDescription="button next"/>
+            android:contentDescription="@string/ContentNextButton"/>
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/RecordValues"
             android:typeface="serif"
-            android:textSize="20dp"
+            android:textSize="20sp"
 
-            android:text="Record 1 of 1"
+            android:text="@string/Record"
             android:layout_gravity="center_horizontal"
             android:gravity="center"
             android:textColor="#e40716"

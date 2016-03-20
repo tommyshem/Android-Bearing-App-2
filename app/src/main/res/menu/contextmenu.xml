@@ -1,8 +1,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/contextmenuoption1"
-        android:title="Find Bearing Number"/>
+        android:title="@string/FindBearingNumber"/>
     <item
         android:id="@+id/contextmenuoption2"
-        android:title="Set To Zero"/>
+        android:title="@string/SetToZero"/>
 </menu>

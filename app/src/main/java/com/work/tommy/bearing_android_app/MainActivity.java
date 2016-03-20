@@ -14,14 +14,19 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.*;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.*;
-import android.app.Activity;
+
+
 
 @SuppressWarnings("deprecation")
-public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeListener {
+public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
     //database reference
     public static DBAdapter myDatabase;
     private static int DatabaseRecordLocationNumber = 0;
@@ -54,6 +59,18 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        if(fab != null){
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });}
 
         //open this apps database
         openThisAppsDatabase();
@@ -76,6 +93,7 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
     private void InitContentViewReferencesAndListeners() {
         //reference for the inner diameter edit text
         InnerDiameter_editText_Ref = (EditText) findViewById(R.id.etxt_ID);
+        assert InnerDiameter_editText_Ref != null;
         InnerDiameter_editText_Ref.setText("0");  //set to zero
 
         //Reference for the inner diameter slider switch
@@ -83,6 +101,7 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
 
         //Reference for the outer diameter edit text
         OuterDiameter_editText_Ref = (EditText) findViewById(R.id.etxt_OD);
+        assert OuterDiameter_editText_Ref != null;
         OuterDiameter_editText_Ref.setText("0");
 
         //Reference for the outer diameter slider switch
@@ -90,6 +109,7 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
 
         //Reference for the width diameter edit text
         WidthDiameter_editText_Ref = (EditText) findViewById(R.id.etxt_Width);
+        assert WidthDiameter_editText_Ref != null;
         WidthDiameter_editText_Ref.setText("0");
 
         //Reference for the width diameter  text
@@ -110,6 +130,7 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
         WidthDiameter_SliderSwitch_Ref.setOnSeekBarChangeListener(this);
 
         ListView myList = (ListView) findViewById(R.id.listViewBearingsList);
+        assert myList != null;
         myList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -221,6 +242,7 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
                 );
         // Set the adapter for the list view
         ListView myList = (ListView) findViewById(R.id.listViewBearingsList);
+        assert myList != null;
         myList.setAdapter(myCursorAdapter);
 
     }
@@ -312,8 +334,7 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.mainmenu, menu);
+        getMenuInflater().inflate(R.menu.mainmenu, menu);
         return true;
     }
 

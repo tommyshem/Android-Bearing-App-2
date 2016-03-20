@@ -1,21 +1,26 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.work.tommy.bearing_android_app.main_activity">
     <item
         android:id="@+id/MenuitemEdit"
-        android:title="Edit"
+        android:title="@string/MenuEdit"
         android:visible="true"
-        android:icon="@drawable/ic_menu_edit"></item>
+        android:icon="@drawable/ic_menu_edit"/>
 
     <item
         android:id="@+id/MenuitemAbout"
-        android:title="About"
+        android:title="@string/MenuAbout"
         android:visible="true"
-        android:icon="@drawable/ic_menu_info_details"></item>
+        android:icon="@drawable/ic_menu_info_details"/>
 
     <item
         android:id="@+id/MenuitemSearch"
-        android:title="Search"
+        android:title="@string/MenuSearch"
         android:visible="true"
-        android:icon="@drawable/ic_menu_search"></item>
+        android:icon="@drawable/ic_menu_search"/>
 
 
 </menu>
+
+
