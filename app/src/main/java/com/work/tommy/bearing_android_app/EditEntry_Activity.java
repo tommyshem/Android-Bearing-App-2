@@ -1,5 +1,7 @@
 package com.work.tommy.bearing_android_app;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -199,6 +201,8 @@ public class EditEntry_Activity extends AppCompatActivity {
                 row_id_delete = cursor.getInt(DBAdapter.COL_ROW_ID);
                 if (row_id_delete != -1) {
 
+                    showDeleteDialog();
+
                     MainActivity.appDatabase.deleteRow(row_id_delete);
                     Toast.makeText(this, "Record " + row_id_delete + " Deleted Successfully", Toast.LENGTH_SHORT).show();
                     //update all the edit text fields in this activity
@@ -214,6 +218,26 @@ public class EditEntry_Activity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void showDeleteDialog(){
+//todo needs return boolean
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setTitle("Alert Dialog Title");
+        alertDialog.setMessage("Here is android alert dialog message");
+        // Alert dialog button
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Alert dialog action goes here
+                        // onClick button code here
+                        Toast toast = Toast.makeText(getApplicationContext(), "which = "+which, Toast.LENGTH_LONG);
+                        toast.show();
+                        dialog.dismiss();// use dismiss to cancel alert dialog
+                    }
+                });
+        alertDialog.show();
+
     }
 
     private void UnHideAllNavButtons() {
