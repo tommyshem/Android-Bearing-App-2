@@ -1,6 +1,6 @@
 package com.work.tommy.bearing_android_app;
 
-import android.app.Activity;
+import android.support.v7.app.AppCompatActivity;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,7 +19,7 @@ import android.widget.Toast;
  * adding the new records
  */
 @SuppressWarnings("deprecation")
-public class EditEntry_Activity extends Activity {
+public class EditEntry_Activity extends AppCompatActivity {
 
     //cursor reference for the database
     Cursor c;

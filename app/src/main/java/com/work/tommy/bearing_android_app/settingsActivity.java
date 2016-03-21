@@ -1,6 +1,6 @@
 package com.work.tommy.bearing_android_app;
 
-import android.app.Activity;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 /**
@@ -9,7 +9,7 @@ import android.os.Bundle;
  * Date: 23/03/13
  * Time: 12:57
  */
-public class settingsActivity extends Activity {
+public class settingsActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // setContentView(R.layout.editentry_activity);
