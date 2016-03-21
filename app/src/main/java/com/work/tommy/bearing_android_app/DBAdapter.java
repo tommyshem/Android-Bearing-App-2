@@ -111,7 +111,7 @@ public class DBAdapter {
     }
 
     // Add a new set of values to the database.
-    public long insertRow(String bnumber, int odsize, int idsize, int widthsize, String type, int imagenumber, String location, String comments) {
+    public long insertRow(String bearing_number, int od_size, int id_size, int width_size, String type, int image_number, String location, String comments) {
 		/*
 		 * CHANGE 3:
 		 */
@@ -120,12 +120,12 @@ public class DBAdapter {
         ContentValues initialValues = new ContentValues();
 
         //  Update data in the row with new fields.
-        initialValues.put(KEY_BEARING_NUMBER, bnumber);
-        initialValues.put(KEY_OD_SIZE, odsize);
-        initialValues.put(KEY_ID_SIZE, idsize);
-        initialValues.put(KEY_WIDTH, widthsize);
+        initialValues.put(KEY_BEARING_NUMBER, bearing_number);
+        initialValues.put(KEY_OD_SIZE, od_size);
+        initialValues.put(KEY_ID_SIZE, id_size);
+        initialValues.put(KEY_WIDTH, width_size);
         initialValues.put(KEY_TYPE, type);
-        initialValues.put(KEY_IMAGE_NUMBER, imagenumber);
+        initialValues.put(KEY_IMAGE_NUMBER, image_number);
         initialValues.put(KEY_LOCATION, location);
         initialValues.put(KEY_COMMENTS, comments);
         // Insert it into the database.
@@ -164,7 +164,7 @@ public class DBAdapter {
         String where = null;
         Cursor c = sqlDB.query(true, DATABASE_TABLE, ALL_KEYS,
                 where, null, null, null, null, null);
-        if (c != null) {
+        if (isCursorNotEmpty(c)) {
             c.moveToFirst();
         }
         return c;
@@ -183,10 +183,29 @@ public class DBAdapter {
 
         Cursor c = sqlDB.query(true, DATABASE_TABLE, ALL_KEYS,
                 where, null, null, null, null, null);
-        if (c != null) {
+        if (isCursorNotEmpty(c)) {
             c.moveToFirst();
         }
         return c;
+    }
+
+    /***
+     * Test if a cursor is empty
+     * @param cursor Pass in cursor to test
+     * @return True returned if cursor is empty else return False
+     */
+    public boolean isCursorEmpty(Cursor cursor){
+        return !cursor.moveToFirst() || cursor.getCount() == 0;
+    }
+
+    /***
+     * Test if a cursor is empty
+     * @param cursor Pass in cursor to test
+     * @return True returned if cursor is not empty else return False
+     */
+    public boolean isCursorNotEmpty(Cursor cursor){
+        if(!cursor.moveToFirst() || cursor.getCount() == 0){return false;}
+        return true;
     }
 
     /**
@@ -222,7 +241,7 @@ public class DBAdapter {
 
         Cursor c = sqlDB.query(true, DATABASE_TABLE, ALL_KEYS,
                 where, null, null, null, null, null);
-        if (c != null) {
+        if (isCursorNotEmpty(c)) {
             c.moveToFirst();
         }
         return c;
@@ -236,7 +255,7 @@ public class DBAdapter {
         String where = KEY_ROW_ID + "=" + rowId;
         Cursor c = sqlDB.query(true, DATABASE_TABLE, ALL_KEYS,
                 where, null, null, null, null, null);
-        if (c != null) {
+        if (!isCursorNotEmpty(c)) {
             c.moveToFirst();
         }
         return c;

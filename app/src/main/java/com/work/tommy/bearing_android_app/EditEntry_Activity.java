@@ -22,10 +22,10 @@ import android.widget.Toast;
 public class EditEntry_Activity extends AppCompatActivity {
 
     //cursor reference for the database
-    Cursor c;
+    Cursor cursor;
     //global variables for the gui references
     private EditText bearing_number_EditText_Ref, id_EditText_Ref, od_EditText_Ref;
-    private EditText image_number_EditText_Ref, width_EditText_Ref,type_EditText_Ref;
+    private EditText image_number_EditText_Ref, width_EditText_Ref, type_EditText_Ref;
     private EditText location_EditText_Ref, comments_EditText_Ref;
     private ImageButton prev_ImageButton_Ref, next_ImageButton_Ref;
     private ImageButton first_ImageButton_Ref, last_ImageButton_Ref;
@@ -41,22 +41,24 @@ public class EditEntry_Activity extends AppCompatActivity {
      *
      * @param savedInstanceState Android Object passed
      */
-     @Override
-     public void onCreate(Bundle savedInstanceState) {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.newlayout);
         //setup the edit text references
         setupEditTexts();
         //load data into the cursor
-        c = MainActivity.myDatabase.getAllRows();
-        startManagingCursor(c);
+
+        cursor = MainActivity.appDatabase.getAllRows();
+
         // c.move(MainActivity.GetDatabaseRecordLocationNumber());
         //move to the first record - removed 16/5/2013
-        //c.moveToFirst();
+        //cursor.moveToFirst();
         //fill in  the edit text views with the data from the cursor
-         if(!c.isNull(0)) {
-             UpdateAllEditTextViewsFromCursor();
-         }
+        if (MainActivity.appDatabase.isCursorNotEmpty(cursor)) {
+            startManagingCursor(cursor);
+            UpdateAllEditTextViewsFromCursor();
+        }
     }
 
 
@@ -106,7 +108,6 @@ public class EditEntry_Activity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // save menu reference
-        // this.menu = menu;  no longer used
         //inflate the menu from the xml file
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.optionmenueditentry, menu);
@@ -180,9 +181,9 @@ public class EditEntry_Activity extends AppCompatActivity {
                 // change the state of the menu items.
                 if (result) {
                     //update the cursor with the new data
-                    c.requery();
+                    cursor.requery();
                     //move to the last record in the cursor so you can see the new data
-                    c.moveToLast();
+                    cursor.moveToLast();
                     //setup menu items
                     mi_save.setVisible(false);
                     mi_cancel.setVisible(false);
@@ -195,14 +196,14 @@ public class EditEntry_Activity extends AppCompatActivity {
                 }
             case R.id.mi_delete:
                 int row_id_delete;
-                row_id_delete = c.getInt(DBAdapter.COL_ROW_ID);
+                row_id_delete = cursor.getInt(DBAdapter.COL_ROW_ID);
                 if (row_id_delete != -1) {
 
-                    MainActivity.myDatabase.deleteRow(row_id_delete);
+                    MainActivity.appDatabase.deleteRow(row_id_delete);
                     Toast.makeText(this, "Record " + row_id_delete + " Deleted Successfully", Toast.LENGTH_SHORT).show();
                     //update all the edit text fields in this activity
-                    c = MainActivity.myDatabase.getAllRows();
-                    startManagingCursor(c);
+                    cursor = MainActivity.appDatabase.getAllRows();
+                    startManagingCursor(cursor);
                     UpdateAllEditTextViewsFromCursor();
                     //todo: needs testing above so deletes and updates in the correct place
                     //todo : needs dialog box yes or no before deleting the data
@@ -235,7 +236,7 @@ public class EditEntry_Activity extends AppCompatActivity {
     private Boolean InsertDataToCursor() {
         try {
 
-            MainActivity.myDatabase.insertRow(bearing_number_EditText_Ref.getText().toString(),
+            MainActivity.appDatabase.insertRow(bearing_number_EditText_Ref.getText().toString(),
                     Integer.parseInt(id_EditText_Ref.getText().toString()),
                     Integer.parseInt(od_EditText_Ref.getText().toString()),
                     Integer.parseInt(width_EditText_Ref.getText().toString()),
@@ -262,8 +263,8 @@ public class EditEntry_Activity extends AppCompatActivity {
      * @param v view
      */
     public void onClickFirstRecord(View v) {
-        if (c != null) {
-            c.moveToFirst();
+        if (MainActivity.appDatabase.isCursorNotEmpty(cursor)) {
+            cursor.moveToFirst();
             UpdateAllEditTextViewsFromCursor();
 
         }
@@ -277,9 +278,9 @@ public class EditEntry_Activity extends AppCompatActivity {
      * @param v view
      */
     public void onClickNextRecord(View v) {
-        if (c != null) {
-            if (!c.isLast())
-                c.moveToNext();
+        if (cursor != null) {
+            if (!cursor.isLast())
+                cursor.moveToNext();
         }
         UpdateAllEditTextViewsFromCursor();
     }
@@ -292,9 +293,9 @@ public class EditEntry_Activity extends AppCompatActivity {
      * @param v view
      */
     public void onClickPrevRecord(View v) {
-        if (c != null) {
-            if (!c.isFirst())
-                c.moveToPrevious();
+        if (cursor != null) {
+            if (!cursor.isFirst())
+                cursor.moveToPrevious();
         }
         UpdateAllEditTextViewsFromCursor();
     }
@@ -307,8 +308,8 @@ public class EditEntry_Activity extends AppCompatActivity {
      * @param v view
      */
     public void onClickLastRecord(View v) {
-        if (c != null) {
-            c.moveToLast();
+        if (cursor != null) {
+            cursor.moveToLast();
         }
         UpdateAllEditTextViewsFromCursor();
     }
@@ -319,18 +320,18 @@ public class EditEntry_Activity extends AppCompatActivity {
      * fields for the data set
      */
     private void UpdateAllEditTextViewsFromCursor() {
-        if (c != null) {
-            bearing_number_EditText_Ref.setText(c.getString(DBAdapter.COL_BEARING_NUMBER));
-            od_EditText_Ref.setText(c.getString(DBAdapter.COL_OD_SIZE));
-            id_EditText_Ref.setText(c.getString(DBAdapter.COL_ID_SIZE));
-            width_EditText_Ref.setText(c.getString(DBAdapter.COL_KEY_WIDTH));
-            type_EditText_Ref.setText(c.getString(DBAdapter.COL_KEY_TYPE));
-            image_number_EditText_Ref.setText(c.getString(DBAdapter.COL_KEY_IMAGE_NUMBER));
-            location_EditText_Ref.setText(c.getString(DBAdapter.COL_KEY_LOCATION));
-            comments_EditText_Ref.setText(c.getString(DBAdapter.COL_KEY_COMMENTS));
+        if (cursor != null) {
+            bearing_number_EditText_Ref.setText(cursor.getString(DBAdapter.COL_BEARING_NUMBER));
+            od_EditText_Ref.setText(cursor.getString(DBAdapter.COL_OD_SIZE));
+            id_EditText_Ref.setText(cursor.getString(DBAdapter.COL_ID_SIZE));
+            width_EditText_Ref.setText(cursor.getString(DBAdapter.COL_KEY_WIDTH));
+            type_EditText_Ref.setText(cursor.getString(DBAdapter.COL_KEY_TYPE));
+            image_number_EditText_Ref.setText(cursor.getString(DBAdapter.COL_KEY_IMAGE_NUMBER));
+            location_EditText_Ref.setText(cursor.getString(DBAdapter.COL_KEY_LOCATION));
+            comments_EditText_Ref.setText(cursor.getString(DBAdapter.COL_KEY_COMMENTS));
 
             //setup text for the record number and size of records
-            String text_values = "Record " + (c.getPosition() + 1) + " of " + c.getCount();
+            String text_values = "Record " + (cursor.getPosition() + 1) + " of " + cursor.getCount();
             record_values_EditText_Ref.setText(text_values);
 
 

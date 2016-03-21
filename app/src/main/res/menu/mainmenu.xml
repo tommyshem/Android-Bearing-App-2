@@ -6,18 +6,21 @@
         android:id="@+id/MenuitemEdit"
         android:title="@string/MenuEdit"
         android:visible="true"
+        app:showAsAction="ifRoom|withText"
         android:icon="@drawable/ic_menu_edit"/>
 
     <item
         android:id="@+id/MenuitemAbout"
         android:title="@string/MenuAbout"
         android:visible="true"
+        app:showAsAction="ifRoom|withText"
         android:icon="@drawable/ic_menu_info_details"/>
 
     <item
         android:id="@+id/MenuitemSearch"
         android:title="@string/MenuSearch"
         android:visible="true"
+        app:showAsAction="ifRoom|withText"
         android:icon="@drawable/ic_menu_search"/>
 
 

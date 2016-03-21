@@ -28,7 +28,7 @@ import android.widget.*;
 @SuppressWarnings("deprecation")
 public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
     //database reference
-    public static DBAdapter myDatabase;
+    public static DBAdapter appDatabase;
     private static int DatabaseRecordLocationNumber = 0;
     //stores the references from the layout xml so java can change the widgets and get info from them
     private EditText InnerDiameter_editText_Ref;
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
         InitContentViewReferencesAndListeners();
 
         //populate list from the database
-        populateListViewFromDB(myDatabase.getAllRows());
+        populateListViewFromDB(appDatabase.getAllRows());
 
     }//end onCreate
 
@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
      * @param idInDB Pass in id to be displayed.
      */
     private void displayToastForId(long idInDB) {
-        Cursor cursor = myDatabase.getRow(idInDB);
+        Cursor cursor = appDatabase.getRow(idInDB);
         if (cursor.moveToFirst()) {
             long idDB = cursor.getLong(DBAdapter.COL_ROW_ID);
             String bearing_number = cursor.getString(DBAdapter.COL_BEARING_NUMBER);
@@ -183,7 +183,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
      */
 
     private void UpdateBearingText(long DB_rowid) {
-        Cursor cursor = myDatabase.getRow(DB_rowid);
+        Cursor cursor = appDatabase.getRow(DB_rowid);
         //if cursor not null then get the info
         if (cursor.moveToFirst()) {
 
@@ -204,8 +204,8 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
      * open this apps database by using the DBAdapter class
      */
     private void openThisAppsDatabase() {
-        myDatabase = new DBAdapter(this);
-        myDatabase.open();
+        appDatabase = new DBAdapter(this);
+        appDatabase.open();
 
     }
 
@@ -219,7 +219,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
      */
     private void populateListViewFromDB(Cursor cursor) {
         //get all data from the database
-        //Cursor cursor = myDatabase.getAllRows();
+        //Cursor cursor = appDatabase.getAllRows();
 
         // Allow activity to manage lifetime of the cursor.
         // DEPRECATED! Runs on the UI thread, OK for small/short queries.
@@ -293,7 +293,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
                         //You will get as string input data in this variable.
                         // here we convert the input to a string
                         String srt = input.getEditableText().toString();
-                        Cursor c = myDatabase.FindValueInTable(DBAdapter.KEY_BEARING_NUMBER, srt);
+                        Cursor c = appDatabase.FindValueInTable(DBAdapter.KEY_BEARING_NUMBER, srt);
                         //if cursor is not null then display in the list view
                         if (c != null) populateListViewFromDB(c);
                     } // End of onClick(DialogInterface dialog, int whichButton)
@@ -369,7 +369,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
 
             case R.id.MenuitemSearch:
                 Log.d("menu", "search menu item pressed");
-                Cursor c = myDatabase.SearchBearingSizesInTable(InnerDiameter_editText_Ref.getText().toString(), OuterDiameter_editText_Ref.getText().toString(), WidthDiameter_editText_Ref.getText().toString());
+                Cursor c = appDatabase.SearchBearingSizesInTable(InnerDiameter_editText_Ref.getText().toString(), OuterDiameter_editText_Ref.getText().toString(), WidthDiameter_editText_Ref.getText().toString());
                 //if cursor is not null then display in the list view
                 if (c != null) populateListViewFromDB(c);
                 return true;
@@ -430,7 +430,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
     protected void onDestroy() {
         super.onDestroy();
         //close the database when activity is closed
-        myDatabase.close();
+        appDatabase.close();
     }
 
     /*
@@ -444,7 +444,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
             case R.id.btn_search:
                 Log.d("button", "search width pressed");
                 //search database for the bearing sizes from the values passed
-                Cursor c = myDatabase.SearchBearingSizesInTable(InnerDiameter_editText_Ref.getText().toString(), OuterDiameter_editText_Ref.getText().toString(), WidthDiameter_editText_Ref.getText().toString());
+                Cursor c = appDatabase.SearchBearingSizesInTable(InnerDiameter_editText_Ref.getText().toString(), OuterDiameter_editText_Ref.getText().toString(), WidthDiameter_editText_Ref.getText().toString());
                 //if cursor is not null then display in the list view
                 if (c != null) populateListViewFromDB(c);
                 break;
