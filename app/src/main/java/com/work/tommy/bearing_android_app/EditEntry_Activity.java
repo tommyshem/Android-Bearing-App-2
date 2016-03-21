@@ -55,7 +55,7 @@ public class EditEntry_Activity extends AppCompatActivity {
         //move to the first record - removed 16/5/2013
         //cursor.moveToFirst();
         //fill in  the edit text views with the data from the cursor
-        if (MainActivity.appDatabase.isCursorNotEmpty(cursor)) {
+        if (cursor.moveToFirst()) {
             startManagingCursor(cursor);
             UpdateAllEditTextViewsFromCursor();
         }
@@ -206,6 +206,7 @@ public class EditEntry_Activity extends AppCompatActivity {
                     startManagingCursor(cursor);
                     UpdateAllEditTextViewsFromCursor();
                     //todo: needs testing above so deletes and updates in the correct place
+
                     //todo : needs dialog box yes or no before deleting the data
                 }
 
@@ -263,8 +264,7 @@ public class EditEntry_Activity extends AppCompatActivity {
      * @param v view
      */
     public void onClickFirstRecord(View v) {
-        if (MainActivity.appDatabase.isCursorNotEmpty(cursor)) {
-            cursor.moveToFirst();
+        if (cursor.moveToFirst()) {
             UpdateAllEditTextViewsFromCursor();
 
         }

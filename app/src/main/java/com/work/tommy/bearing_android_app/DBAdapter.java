@@ -164,7 +164,7 @@ public class DBAdapter {
         String where = null;
         Cursor c = sqlDB.query(true, DATABASE_TABLE, ALL_KEYS,
                 where, null, null, null, null, null);
-        if (isCursorNotEmpty(c)) {
+        if(c != null) {
             c.moveToFirst();
         }
         return c;
@@ -183,29 +183,11 @@ public class DBAdapter {
 
         Cursor c = sqlDB.query(true, DATABASE_TABLE, ALL_KEYS,
                 where, null, null, null, null, null);
-        if (isCursorNotEmpty(c)) {
+        // check if cursor is null
+        if(c != null) {
             c.moveToFirst();
         }
         return c;
-    }
-
-    /***
-     * Test if a cursor is empty
-     * @param cursor Pass in cursor to test
-     * @return True returned if cursor is empty else return False
-     */
-    public boolean isCursorEmpty(Cursor cursor){
-        return !cursor.moveToFirst() || cursor.getCount() == 0;
-    }
-
-    /***
-     * Test if a cursor is empty
-     * @param cursor Pass in cursor to test
-     * @return True returned if cursor is not empty else return False
-     */
-    public boolean isCursorNotEmpty(Cursor cursor){
-        if(!cursor.moveToFirst() || cursor.getCount() == 0){return false;}
-        return true;
     }
 
     /**
@@ -241,7 +223,8 @@ public class DBAdapter {
 
         Cursor c = sqlDB.query(true, DATABASE_TABLE, ALL_KEYS,
                 where, null, null, null, null, null);
-        if (isCursorNotEmpty(c)) {
+        // check if cursor is null
+        if(c != null) {
             c.moveToFirst();
         }
         return c;
@@ -255,7 +238,8 @@ public class DBAdapter {
         String where = KEY_ROW_ID + "=" + rowId;
         Cursor c = sqlDB.query(true, DATABASE_TABLE, ALL_KEYS,
                 where, null, null, null, null, null);
-        if (!isCursorNotEmpty(c)) {
+// check if cursor is null
+        if(c != null) {
             c.moveToFirst();
         }
         return c;
