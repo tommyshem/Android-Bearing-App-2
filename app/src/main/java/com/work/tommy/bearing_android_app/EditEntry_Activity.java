@@ -1,5 +1,6 @@
 package com.work.tommy.bearing_android_app;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.net.ContentHandler;
+
 
 /**
  * EditEntry class - provides the navigation for the cursor and added the menu item edit for
@@ -23,6 +26,8 @@ import android.widget.Toast;
 @SuppressWarnings("deprecation")
 public class EditEntry_Activity extends AppCompatActivity {
 
+    // needed for the dialog to pass back result value
+    Boolean dialogResult;
     //cursor reference for the database
     Cursor cursor;
     //global variables for the gui references
@@ -200,18 +205,18 @@ public class EditEntry_Activity extends AppCompatActivity {
                 int row_id_delete;
                 row_id_delete = cursor.getInt(DBAdapter.COL_ROW_ID);
                 if (row_id_delete != -1) {
-
-                    showDeleteDialog();
-
-                    MainActivity.appDatabase.deleteRow(row_id_delete);
-                    Toast.makeText(this, "Record " + row_id_delete + " Deleted Successfully", Toast.LENGTH_SHORT).show();
-                    //update all the edit text fields in this activity
-                    cursor = MainActivity.appDatabase.getAllRows();
-                    startManagingCursor(cursor);
-                    UpdateAllEditTextViewsFromCursor();
-                    //todo: needs testing above so deletes and updates in the correct place
-
                     //todo : needs dialog box yes or no before deleting the data
+                    Boolean dialog_result = showConfirmationDialogBox("Are you sure you want to delete record",this);
+
+                    if(dialog_result) {
+                        MainActivity.appDatabase.deleteRow(row_id_delete);
+                        Toast.makeText(this, "Record " + row_id_delete + " Deleted Successfully", Toast.LENGTH_SHORT).show();
+                        //update all the edit text fields in this activity
+                        cursor = MainActivity.appDatabase.getAllRows();
+                        startManagingCursor(cursor);
+                        UpdateAllEditTextViewsFromCursor();
+                        //todo: needs testing above so deletes and updates in the correct place
+                    }
                 }
 
                 return true;
@@ -220,26 +225,38 @@ public class EditEntry_Activity extends AppCompatActivity {
         }
     }
 
-    public void showDeleteDialog(){
-//todo needs return boolean
-        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-        alertDialog.setTitle("Alert Dialog Title");
-        alertDialog.setMessage("Here is android alert dialog message");
-        // Alert dialog button
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        // Alert dialog action goes here
-                        // onClick button code here
-                        Toast toast = Toast.makeText(getApplicationContext(), "which = "+which, Toast.LENGTH_LONG);
-                        toast.show();
-                        dialog.dismiss();// use dismiss to cancel alert dialog
-                    }
-                });
-        alertDialog.show();
+    public Boolean showConfirmationDialogBox(String messageToShow, Context context) {
+
+        // 1. Instantiate an AlertDialog.Builder with its constructor
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+// 2. Chain together various setter methods to set the dialog characteristics
+        builder.setMessage(messageToShow);
+
+        // Add the buttons
+        builder.setPositiveButton(R.string.Yes, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User clicked OK button
+            }
+        });
+        builder.setNegativeButton(R.string.No, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User cancelled the dialog
+            }
+        });
+
+// 3. Get the AlertDialog from create()
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        return true;
 
     }
 
+
+    /**
+     * Un-hide all the navigation buttons
+     */
     private void UnHideAllNavButtons() {
         //un hide the nav buttons
         first_ImageButton_Ref.setVisibility(Button.VISIBLE);
@@ -254,7 +271,7 @@ public class EditEntry_Activity extends AppCompatActivity {
     }
 
     /**
-     * InsertDataToCursor()
+     * Insert data from the edit boxes to cursor
      *
      * @return true for the data inserted correctly else false not inserted
      */

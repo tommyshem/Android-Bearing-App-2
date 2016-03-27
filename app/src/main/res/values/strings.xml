@@ -58,4 +58,6 @@
     <string name="MenuEdit">Edit</string>
     <string name="MenuAbout">About</string>
     <string name="MenuSearch">Search</string>
+    <string name="No">No</string>
+    <string name="Yes">Yes</string>
 </resources>
