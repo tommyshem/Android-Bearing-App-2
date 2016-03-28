@@ -2,6 +2,7 @@ package com.work.tommy.bearing_android_app;
 
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
+import static org.assertj.core.api.Assertions.*;
 import android.util.Log;
 
 import org.junit.*;
@@ -19,13 +20,19 @@ public class DBAdapterTest {
 
 
     @Before
-    public void setUp(){
+    public void setUp() throws Exception{
         Log.d(TAG, "BeforeClass: called");
         dbAdapter = new DBAdapter(InstrumentationRegistry.getTargetContext());
+        assertThat(dbAdapter).isInstanceOf(DBAdapter.class);
+    }
+
+    @After
+    public void tearDown() throws Exception{
+        if (dbAdapter!=null){dbAdapter.close();}
     }
 
     @Test
-    public void testTest() {
+    public void testTest() throws Exception{
     assert(true);
 
     }
