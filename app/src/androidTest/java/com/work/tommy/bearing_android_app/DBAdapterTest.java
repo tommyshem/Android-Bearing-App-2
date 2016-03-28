@@ -1,81 +1,32 @@
 package com.work.tommy.bearing_android_app;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import com.work.tommy.bearing_android_app.DBAdapter;
-import static org.junit.Assert.*;
+import android.support.test.InstrumentationRegistry;
+import android.support.test.runner.AndroidJUnit4;
+import android.util.Log;
+
+import org.junit.*;
+import org.junit.runner.RunWith;
+
 
 /**
  * Test the DBAdapter
  */
+@RunWith(AndroidJUnit4.class)
 public class DBAdapterTest {
 
-    private DBAdapter dbAdapter;
+    private static DBAdapter dbAdapter = null;
+    private static String TAG = "TestingUnit->";
 
-    @BeforeClass
-    public void setupDBAdapter(){
-        this.dbAdapter = new DBAdapter()
-    }
 
     @Before
-    public void setUp() throws Exception {
-
-    }
-
-    @After
-    public void tearDown() throws Exception {
-
+    public void setUp(){
+        Log.d(TAG, "setUp: called");
+        dbAdapter = new DBAdapter(InstrumentationRegistry.getTargetContext());
     }
 
     @Test
-    public void testOpen() throws Exception {
-
-    }
-
-    @Test
-    public void testClose() throws Exception {
-
-    }
-
-    @Test
-    public void testInsertRow() throws Exception {
-
-    }
-
-    @Test
-    public void testDeleteRow() throws Exception {
-
-    }
-
-    @Test
-    public void testDeleteAll() throws Exception {
-
-    }
-
-    @Test
-    public void testGetAllRows() throws Exception {
-
-    }
-
-    @Test
-    public void testFindValueInTable() throws Exception {
-
-    }
-
-    @Test
-    public void testSearchBearingSizesInTable() throws Exception {
-
-    }
-
-    @Test
-    public void testGetRow() throws Exception {
-
-    }
-
-    @Test
-    public void testUpdateRow() throws Exception {
+    public void testTest() {
+    assert(true);
 
     }
 }

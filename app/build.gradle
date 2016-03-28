@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.work.tommy.bearing_android_app"
-        minSdkVersion 8
+        minSdkVersion 18
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -37,10 +37,13 @@ dependencies {
     testCompile 'junit:junit:4.12'  // junit4
     // Optional -- mock objects
     testCompile 'org.mockito:mockito-core:1.+'
+    // Optional -- assert matcher's
+    testCompile 'org.assertj:assertj-core:2.4.0'
 
     // **************************************************
     // Android testing which uses a device or emulator
     // **************************************************
+    androidTestCompile 'junit:junit:4.12'  // junit4
     androidTestCompile 'com.android.support.test:runner:0.5'
     androidTestCompile 'com.android.support:support-annotations:23.2.1'
     androidTestCompile 'com.android.support.test:rules:0.4.1'
@@ -50,5 +53,6 @@ dependencies {
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
     // Optional -- UI testing with UI Automator
     androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.1'
+
 
 }
