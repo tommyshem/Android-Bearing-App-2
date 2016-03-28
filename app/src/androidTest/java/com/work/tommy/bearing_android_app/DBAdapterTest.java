@@ -20,7 +20,7 @@ public class DBAdapterTest {
 
     @Before
     public void setUp(){
-        Log.d(TAG, "setUp: called");
+        Log.d(TAG, "BeforeClass: called");
         dbAdapter = new DBAdapter(InstrumentationRegistry.getTargetContext());
     }
 
@@ -29,4 +29,6 @@ public class DBAdapterTest {
     assert(true);
 
     }
+
+
 }
