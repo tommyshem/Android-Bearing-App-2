@@ -30,9 +30,6 @@ public class DBAdapter {
 
     // DataBase Fields  go here
     public static final String KEY_ROW_ID = "_id";
-    public static final int COL_ROW_ID = 0;
-
-    //  Setup your fields here:
     public static final String KEY_BEARING_NUMBER = "name";
     public static final String KEY_OD_SIZE = "odsize";
     public static final String KEY_ID_SIZE = "idsize";
@@ -43,6 +40,7 @@ public class DBAdapter {
     public static final String KEY_COMMENTS = "comments";
 
     //  Setup your field numbers here (0 = KEY_ROW_ID, 1=...)
+    public static final int COL_ROW_ID = 0;
     public static final int COL_BEARING_NUMBER = 1;
     public static final int COL_OD_SIZE = 2;
     public static final int COL_ID_SIZE = 3;

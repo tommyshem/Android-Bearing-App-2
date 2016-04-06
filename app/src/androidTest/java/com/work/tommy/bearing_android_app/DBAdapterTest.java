@@ -3,13 +3,8 @@ package com.work.tommy.bearing_android_app;
 import android.database.Cursor;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
-
 import static org.assertj.core.api.Assertions.*;
-
 import android.util.Log;
-
-import junit.framework.*;
-
 import org.junit.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
